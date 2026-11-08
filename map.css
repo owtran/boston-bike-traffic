@@ -15,3 +15,94 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
+
+
+
+#map {
+    position: relative;
+}
+
+#map svg {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Property	                    Meaning
+position: relative	            Makes the map the positioning reference
+position: absolute	            Positions SVG over the map
+z-index: 1	                    Places SVG above the map
+width: 100%	                    Fills the map's width
+height: 100%	                Fills the map's height
+pointer-events: none	        Lets you drag and zoom the map through the SVG */
+
+
+
+/* STEP 6.1: Traffic flow colors */
+/* STEP 6.2: Shared colors for circles and legend */
+#map svg circle,
+.legend > div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+}
+
+/* Bike station circles */
+#map svg circle {
+    fill: var(--color);
+    fill-opacity: 0.6;
+    stroke: white;
+    stroke-width: 1px;
+    pointer-events: auto;
+}
+
+
+
+
+header {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    width: 100%;
+}
+
+header label {
+    margin-left: auto;
+}
+
+#selected-time,
+#any-time {
+    display: block;
+}
+
+#any-time {
+    color: gray;
+    font-style: italic;
+}
+
+
+/* STEP 6.2: Legend layout */
+.legend {
+    display: flex;
+    width: 100%;
+    gap: 1px;
+    margin-block: 1em;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.legend > div {
+    flex: 1;
+    background: var(--color);
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}

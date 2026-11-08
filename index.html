@@ -23,7 +23,23 @@
 </head>
 
 <body>
+    <header>
     <h1>🚴 Boston Bike Traffic</h1>
+
+    <label>
+        Filter by time:
+        <input
+            type="range"
+            id="time-slider"
+            min="-1"
+            max="1440"
+            value="-1"
+        >
+
+        <time id="selected-time"></time>
+        <em id="any-time">(any time)</em>
+    </label>
+    </header>
 
     <p>
         Interactive visualization of bike traffic
@@ -31,7 +47,17 @@
     </p>
 
     <!-- Map appears here -->
-    <div id="map"></div>
+    <div id="map">
+        <svg></svg>
+    </div>
+
+    <!-- STEP 6.2: Traffic flow legend -->
+<div class="legend">
+    <div style="--departure-ratio: 1">More departures</div>
+    <div style="--departure-ratio: 0.5">Balanced</div>
+    <div style="--departure-ratio: 0">More arrivals</div>
+</div>
+
 </body>
 </html>
 
